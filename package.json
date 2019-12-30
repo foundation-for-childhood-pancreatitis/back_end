@@ -1,0 +1,32 @@
+{
+  "name": "back_end",
+  "version": "1.0.0",
+  "description": "Node/express server with postgres database ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/foundation-for-childhood-pancreatitis/back_end.git"
+  },
+  "author": "foundation for childhood pancreatitis dev team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/foundation-for-childhood-pancreatitis/back_end/issues"
+  },
+  "homepage": "https://github.com/foundation-for-childhood-pancreatitis/back_end#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^3.21.2",
+    "knex": "^0.20.6",
+    "pg": "^7.17.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2",
+    "supertest": "^4.0.2"
+  }
+}
