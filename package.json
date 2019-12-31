@@ -6,7 +6,7 @@
   "scripts": {
     "nodemon": "nodemon index.js",
     "start": "node index.js",
-    "generate-docs": "jsdoc -c ./jsdoc-config.json",
+    "generate-docs": "jsdoc -c ./config/jsdoc-config.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -26,6 +26,7 @@
     "express": "^4.17.1",
     "helmet": "^3.21.2",
     "jsdoc": "^3.6.3",
+    "jsonwebtoken": "^8.5.1",
     "knex": "^0.20.6",
     "moment": "^2.24.0",
     "pg": "^7.17.0"
@@ -35,8 +36,7 @@
     "supertest": "^4.0.2"
   },
   "engines": {
-      "node":">=0.10.3 <0.12",
-      "npm": "6.12.0"
+    "node": "12.13.0",
+    "npm": "6.12.0"
   }
-  
 }
