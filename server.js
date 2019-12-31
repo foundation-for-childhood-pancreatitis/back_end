@@ -2,6 +2,10 @@ const express = require('express');
 const cors  = require('cors');
 const helmet = require('helmet');
 const moment = require('moment')
+const adminRouter = require('./routes/auth.router')
+const donationsRouter = require('./routes/donations.router')
+const mailingListRouter = require('./routes/mailing-list.router')
+const authenticate = require('./auth/authenticate')
 /**
  * Create the server
  */
@@ -26,4 +30,12 @@ server.use(cors());
 server.use(helmet());
 server.use(express.json());
 
+/**
+ * Add Routers
+ */
+
+ router.use('/donations',donationsRouter);
+ router.use('/admin',adminRouter);
+ router.use('/mailing_list',mailingListRouter);
+ 
 module.exports = server;

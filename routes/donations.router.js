@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 const db = require('../models/donations.model')
 
-router.get('/donations',(req,res) => {
+router.get('/',(req,res) => {
     db.getDonations()
       .then(donations =>{
           if(donations){
@@ -13,7 +13,7 @@ router.get('/donations',(req,res) => {
       .catch(error =>{res.status(500).json({message:error.message})})
 })
 
-router.get('/donations/:id',(req,res) =>{
+router.get('/:id',(req,res) =>{
     const id = req.params.id
     db.getDonationsById(id)
     .then(donations =>{
@@ -25,7 +25,7 @@ router.get('/donations/:id',(req,res) =>{
     .catch(error =>{res.status(500).json({message:error.message})})
 })
 
-router.get('donations/byfilter/:filter',(req,res) => {
+router.get('/byfilter/:filter',(req,res) => {
     const filter = req.params.filter
     db.getDonationsByFilter(filter)
     .then(donations =>{
@@ -37,7 +37,7 @@ router.get('donations/byfilter/:filter',(req,res) => {
     .catch(error => {res.status(500).json({message:error.message})})
 })
 
-router.post('/donations',(req,res)=>{
+router.post('/',(req,res)=>{
     const donation = req.body
     db.postDonation(donation)
     .then(id =>{
@@ -49,7 +49,7 @@ router.post('/donations',(req,res)=>{
     .catch(error => {res.status(500).json({message:error.message})})
 })
 
-router.put('/donations/:id',(req,res) =>{
+router.put('/:id',(req,res) =>{
     const id = req.params.id
     const changes = req.body
     db.updateDonations(id,changes)
@@ -62,7 +62,7 @@ router.put('/donations/:id',(req,res) =>{
     .catch(error =>{res.status(500).json({message:error.message})})
 })
 
-router.delete('/donations/:id',(req,res) => {
+router.delete('/:id',(req,res) => {
     const id = req.params.id
     db.deleteDonation(id)
     .then(deleted =>{
@@ -73,3 +73,5 @@ router.delete('/donations/:id',(req,res) => {
     })
     .catch(error =>{res.status(500).json({message:error.message})})
 })
+
+module.exports = router

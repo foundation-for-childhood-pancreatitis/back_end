@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const db = require('../models/mailing-list.model')
 
-router.get('/mailing_list',(req,res) => {
+router.get('/',(req,res) => {
     db.getList()
     .then(list => {
         if(list){
@@ -12,7 +12,7 @@ router.get('/mailing_list',(req,res) => {
     .catch(error => {res.status(500).json({message:error.message})})
 })
 
-router.post('/mailing_list',(req,res) => {
+router.post('/',(req,res) => {
     const list = req.body
     db.postList(list)
     .then(newList => {
@@ -24,7 +24,7 @@ router.post('/mailing_list',(req,res) => {
     .catch(error => {res.status(500).json({message:error.message})})
 })
 
-router.put('/mailing_list/:id',(req,res) =>{
+router.put('/:id',(req,res) =>{
       const id = req.params.id
       const changes = req.body
       db.updateList(id,changes)
@@ -37,7 +37,7 @@ router.put('/mailing_list/:id',(req,res) =>{
       .catch(error => {res.status(500).json({message:error.message})})
     })
 
-    router.delete('/mailing_list/:id',(req,res) => {
+    router.delete('/:id',(req,res) => {
         const id = req.params.id
         db.deleteList(id)
         .then(deletedList =>{
@@ -49,3 +49,5 @@ router.put('/mailing_list/:id',(req,res) =>{
         .catch(error => {res.status(500).json({message:error.message})})
 
     })
+
+    module.exports = router
