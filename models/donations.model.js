@@ -1,4 +1,4 @@
-const db = require('../config/dbConfig');
+const db = require('../config/db.config');
 
 module.exports = {
     getDonations,
@@ -21,7 +21,9 @@ function postDonation(donation){
 function deleteDonation(id){
     return db('donations')
     .where({id})
+    .truncate()
     .delete()
+    
 }
 
 function updateDonations(id,changes){

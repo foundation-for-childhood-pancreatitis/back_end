@@ -5,18 +5,20 @@ const moment = require('moment')
 const adminRouter = require('./routes/auth.router')
 const donationsRouter = require('./routes/donations.router')
 const mailingListRouter = require('./routes/mailing-list.router')
+const donationsProcssorRouter = require('./routes/donations.payments')
 const authenticate = require('./auth/authenticate')
-/**
- * Create the server
+
+
+
+/** Create the server
+ *
  */
 const server = express();
 
 
-/** Add Middleware
+/** Middleware -
+ * 
  * Logger function logs requests made to the server
- * @param {Request} Request Object
- * @returns {String} console logs the url and the request method
- * @returns {Function} returns next() ending the function
  */
 function logger(req,res,next){
     const url = req.url;
@@ -25,17 +27,21 @@ function logger(req,res,next){
    next();
 }
 
+/** Middleware 
+ * 
+ */
 server.use(logger);
 server.use(cors());
 server.use(helmet());
 server.use(express.json());
 
-/**
- * Add Routers
+/** Routers -
+ * 
  */
-
- router.use('/donations',donationsRouter);
- router.use('/admin',adminRouter);
- router.use('/mailing_list',mailingListRouter);
+server.use(express.static('public'))
+ server.use('/donations',donationsRouter);
+ server.use('/process',donationsProcssorRouter)
+ server.use('/admin',adminRouter);
+ server.use('/mailing_list',mailingListRouter);
  
 module.exports = server;

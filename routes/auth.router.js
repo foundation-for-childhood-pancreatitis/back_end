@@ -9,7 +9,7 @@ const moment = require('moment')
 
 /**Register A New Admin
  * @post
- * @route /register
+ * @route admin/register
  * @param {String} name
  * @param {String} password
  * @param {String} email
@@ -24,20 +24,20 @@ router.post('/register',(req,res) => {
     const hash = bcrypt.hashSync(admin.password,10);
     admin.password = hash
 
-    db.add(admin)
+    db.addAdmin(admin)
     .then(saved  => {
         if(saved){res.status(201).json({message:`${saved.email} added @${moment().format('ll')}`,data:saved})}
            
         
         res.status(404).json({message:'Please check username and email'})})
     
-    .catch(err =>{res.status(500).json({message:err.message})})
+    .catch(err =>{res.status(500),console.log(err)})
     
 })
 
 /**Login 
  * @post
- * @route /login
+ * @route admin/login
  * @param {String} email
  * @param {String} password
  * @returns {Token} authorization token
@@ -48,8 +48,8 @@ router.post('/login' ,(req,res) => {
     if(!email || !password){
         res.status(403).json({message:'Please enter login information'})
     }
-    db.getBy({ email })
-      .first()
+    db.getByEmail(email )
+  
       .then(admin => {
           if(admin && bcrypt.compareSync(password, admin.password)){
               // produce token
@@ -68,9 +68,9 @@ router.post('/login' ,(req,res) => {
 })
 function generateToken(admin) {
     const payload = {
-      email: admon.email ,
-      subject: user.id,
-      role: user.role,
+      email: admin.email ,
+      subject: admin.id,
+      role: admin.role,
     };
     const options = {
       expiresIn: '8h',

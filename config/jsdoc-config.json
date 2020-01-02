@@ -1,8 +1,18 @@
 {
     "source":{
         "includePattern":".+\\.js(doc|x)?$",
+        "excludePattern":"(^|\\/|\\\\)_",
         "include":["."],
         "exclude":["node_modules",".env",".gitignore"]
+    },
+    "tags":{
+        "allowUnknownTags":true,
+        "dictionaries":["jsdoc","closure"]
+    },
+    "plugins": ["plugins/markdown","jsdoc-http-plugin"],
+    "templates": {
+        "cleverLinks": false,
+        "monospaceLinks": false
     },
     "recurseDepth":10,
     "opts":{

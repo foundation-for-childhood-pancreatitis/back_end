@@ -1,7 +1,10 @@
 const router = require('express').Router();
 const db = require('../models/mailing-list.model')
 
+
+/** @ mailing_list */
 router.get('/',(req,res) => {
+    
     db.getList()
     .then(list => {
         if(list){
@@ -15,9 +18,9 @@ router.get('/',(req,res) => {
 router.post('/',(req,res) => {
     const list = req.body
     db.postList(list)
-    .then(newList => {
-        if(newList){
-            return res.status(201).json({data:newlist})
+    .then(id => {
+        if(id){
+            return res.status(201).json({data:id})
         }
         return res.status(400).json({message:'Please check information sent'})
     })
