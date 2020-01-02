@@ -6,7 +6,7 @@
   "scripts": {
     "nodemon": "nodemon index.js",
     "start": "node index.js",
-    "generate-docs": "jsdoc -c ./config/jsdoc-config.json",
+    "generate-docs": "rm -rf ./docs/*; jsdoc -c ./config/jsdoc-config.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,17 +21,21 @@
   "homepage": "https://github.com/foundation-for-childhood-pancreatitis/back_end#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^3.21.2",
-    "jsdoc": "^3.6.3",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.20.6",
     "moment": "^2.24.0",
-    "pg": "^7.17.0"
+    "pg": "^7.17.0",
+    "square-connect": "^2.20191217.0"
   },
   "devDependencies": {
+    "jsdoc": "^3.6.3",
+    "jsdoc-http-plugin": "^0.3.2",
+    "jsdoc-to-markdown": "^5.0.3",
     "nodemon": "^2.0.2",
     "supertest": "^4.0.2"
   },

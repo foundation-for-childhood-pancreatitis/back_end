@@ -2,15 +2,15 @@ const db = require('../config/db.config')
 
 module.exports = {
     get,
-    getBy,
-    getById,
-    add,
+    getByFilter,
+    getByEmail,
+    addAdmin,
     updateEmail,
     updatePassword,
     deleteUser
-},
+}
 
-function getBy(filter) {
+function getByFilter(filter) {
     return db('admin')
     .where({filter})
 }
@@ -19,18 +19,17 @@ function get() {
     return db('admin')
     .then(admin => admin)
 }
-function getById(id){
+function getByEmail(email){
     return db('admin')
-    .select('id','name','email')
-    .where({ id })
+    .select('*')
+    .where({ email })
     .first()
     .then(admin =>{return admin})
 }
 
-function add(adminData){
-    return db('admin')
-    .insert(adminData,"id")
-    .then(adminIdArr => getById(adminIdArr[0]))
+function addAdmin(adminData){
+    return db('admin').insert(adminData,"id")
+      .then(adminIdArr => getById(adminIdArr[0]))
 }
 
 function updateEmail(id,email){
