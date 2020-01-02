@@ -7,7 +7,7 @@ const donationsRouter = require('./routes/donations.router')
 const mailingListRouter = require('./routes/mailing-list.router')
 const donationsProcssorRouter = require('./routes/donations.payments')
 const authenticate = require('./auth/authenticate')
-
+const  storyRouter = require('./routes/story.router')
 
 
 /** Create the server
@@ -43,5 +43,5 @@ server.use(express.static('public'))
  server.use('/process',donationsProcssorRouter)
  server.use('/admin',adminRouter);
  server.use('/mailing_list',mailingListRouter);
- 
+ server.use('/your_story',storyRouter)
 module.exports = server;
