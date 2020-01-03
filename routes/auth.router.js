@@ -14,10 +14,7 @@ router.post('/register',(req,res) => {
     admin.password = hash
 
     db.addAdmin(admin)
-    .then(id => {
-        res.status(201).json({id:id})
-
-    })
+    .then(id =>    res.status(201).json({id:id}))
         
      
     
@@ -39,13 +36,13 @@ router.post('/login' ,(req,res) => {
             const token = generateToken(admin);
               // return toke to the client
 
-            res.status(200).json({
-                message:`Welcome ${admin.email}`,
-                token
+           return  res.status(200).json({
+                 message:`Welcome ${admin.email}`,
+                 token
             })
             
           }
-          res.status(409).json({message:'User does not exist'})
+        return   res.status(409).json({message:'User does not exist'})
       })
       .catch(error =>{res.status(500).json(error.message)})
 })

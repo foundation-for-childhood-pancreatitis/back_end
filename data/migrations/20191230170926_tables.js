@@ -24,7 +24,8 @@ exports.up = function(knex) {
       
       // Mailing List Table
 
-      .createTable("mailing_list",tbl => {
+      .createTable("mailing_list",tbl => {npm start
+
           tbl.increments();
           tbl.string("email");
           tbl.string("name")
@@ -59,7 +60,7 @@ exports.down = function(knex) {
        .dropTableIfExists('your_story')
        .dropTableIfExists("mailing_list")
        .dropTableIfExists("donations")
-       .dropTableIfExists("admin") )
-   
-   }
+       .dropTableIfExists("admin")} )
+
+
    

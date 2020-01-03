@@ -30,6 +30,7 @@
     "knex": "^0.20.6",
     "moment": "^2.24.0",
     "pg": "^7.17.0",
+    "react-netlify-identity": "^0.1.9",
     "square-connect": "^2.20191217.0"
   },
   "devDependencies": {
