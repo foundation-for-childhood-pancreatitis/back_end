@@ -53,7 +53,10 @@ router.post('/',(req,res) =>{
  * @param {String} Changes 
  *  
  */
- router.put('/',(req,res) =>{
+ router.put('/:id',(req,res) =>{
+     console.log(req.params.id)
+     const changes = req.body
+      const id = req.params.id
       db.updateStory(changes,id)
       .then(newStory => {
           return res.status(200).json({data:newStory})
@@ -62,23 +65,23 @@ router.post('/',(req,res) =>{
 
  /**delStory
   * @private
-  * @route DELETE /your_story:id
+  * @route DELETE /your_story/:id
   * @param {Integer} Id req.params.id
 
   */,
- router.delete('/:id',(req,res) =>{
-
-        let u_id = req.params.id
-
-
-      db.deleteStory(u_id)
- 
-     .then(resp,error =>{
-    if(!error)
-         res.status(204)
-         console.log(resp.data)
-     })
-     .catch(err => {res.status(500).json(err)})
+  router.delete('/:id', (req, res) => {
+    const { id } = req.params;
+    db.deleteStory(id)
+    .then(deleted => {
+      if (deleted) {
+        res.json({ removed: deleted });
+      } else {
+        res.status(404).json({ message: 'Could not find story with given id' });
+      }
     })
+    .catch(err => {
+      res.status(500).json({ message: 'Failed to delete story' });
+    });
+  })
 
-    module.exports = router
+  module.exports = router
