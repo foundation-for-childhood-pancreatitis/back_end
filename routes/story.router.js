@@ -48,16 +48,29 @@ router.post('/',(req,res) =>{
     }
 /**putStory
  * @private
- * @route /your_story/:id
+ * @route /your_story:id
  * @param {String} Id req.params.id
  * @param {String} Changes 
  *  
  */
- router.put('/',(req,res) =>{
-      db.updateStory(changes,id)
-      .then(newStory => {
-          return res.status(200).json({data:newStory})
-      })
+ router.put('/:id',(req,res) =>{
+     const { id } = req.params
+     const changes = req.body
+
+     db.getStoryById(id)
+     .then(story => {
+         if (story) {
+            db.updateStory(changes,id)
+            .then(updatedStory => {
+                res.json(updatedStory)
+            })
+         } else {
+            res.status(404).json({ message: 'Could not find story with given id' });
+         }
+     })
+     .catch (err => {
+        res.status(500).json({ message: 'Failed to update story' });
+      });
  })
 
  /**delStory
@@ -66,19 +79,17 @@ router.post('/',(req,res) =>{
   * @param {Integer} Id req.params.id
 
   */,
- router.delete('/:id',(req,res) =>{
 
-        let u_id = req.params.id
+  router.delete('/:id', (req, res) => {
+    const { id } = req.params;
+    db.delStory(id)
+    .then(deleted => {
+      if (deleted) {
+        res.json({ removed: deleted });
+      } else {
+        res.status(404).json({ message: 'Could not find story with given id' });
+      }
 
-
-      db.deleteStory(u_id)
  
-     .then(resp,error =>{
-    if(!error)
-         res.status(204)
-         console.log(resp.data)
-     })
-     .catch(err => {res.status(500).json(err)})
-    })
 
     module.exports = router
