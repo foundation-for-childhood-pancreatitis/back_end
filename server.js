@@ -43,5 +43,5 @@ server.use(express.static('public'))
  server.use('/process',donationsProcssorRouter)
  server.use('/admin',adminRouter);
  server.use('/mailing_list',mailingListRouter);
- server.use('/your_story',storyRouter)
+ server.use('/story',storyRouter)
 module.exports = server;

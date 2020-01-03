@@ -1,10 +1,9 @@
 const db = require('../config/db.config')
-
 module.exports = {
     getStory,
     updateStory,
     addStory,
-    delStory
+    deleteStory
 }
 function getStory(){
     return db('your_story')
@@ -23,8 +22,9 @@ function addStory(story){
 
 } 
 
-function delStory(id){
-    return db('you_story')
-          .where('id','=',id)
-          .delete()
+function deleteStory(uid){
+    return db('your_story')
+            .orderBy('id')
+            .where("id","=",uid)
+           .delete()
 }
