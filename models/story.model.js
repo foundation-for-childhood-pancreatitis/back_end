@@ -19,7 +19,7 @@ function updateStory(id,changes){
 
 function addStory(story){
     return db('your_story')
-       .instert(story,'id')
+       .insert(story,'id')
 
 } 
 
