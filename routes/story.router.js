@@ -8,9 +8,7 @@ const db = require('../models/story.model')
  @param {req}
  @param {res}
  @returns {get} GET - All stories from your_story table
- * 
- 
- */
+ *  */
 router.get('/',(req,res) =>{
      db.getStory()
      .then(stories =>{
@@ -44,7 +42,10 @@ router.post('/',(req,res) =>{
     })
      .catch(err =>{message:err.message})
 })
-
+    function getById(id){
+        return db('your_story')
+               .where({id})
+    }
 /**putStory
  * @private
  * @route /your_story/:id
@@ -66,15 +67,18 @@ router.post('/',(req,res) =>{
 
   */,
  router.delete('/:id',(req,res) =>{
-     const id = req.params.id
-     console.log(id)
-     db.delStory(id)
-     .then(resp =>{
-         conole.log(resp)
+
+        let u_id = req.params.id
+
+
+      db.deleteStory(u_id)
+ 
+     .then(resp,error =>{
+    if(!error)
          res.status(204)
-         console.log(resp)
+         console.log(resp.data)
      })
-     .catch(err => {res.status(500).json({message:err.message})})
+     .catch(err => {res.status(500).json(err)})
     })
 
     module.exports = router
