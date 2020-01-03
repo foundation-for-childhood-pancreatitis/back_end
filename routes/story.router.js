@@ -67,8 +67,10 @@ router.post('/',(req,res) =>{
   */,
  router.delete('/:id',(req,res) =>{
      const id = req.params.id
+     console.log(id)
      db.delStory(id)
      .then(resp =>{
+         conole.log(resp)
          res.status(204)
          console.log(resp)
      })
