@@ -41,7 +41,7 @@ function addStory(story){
 
        
             
-function delStory(id) {
+function deleteStory(id) {
     return db('your_story').where({ id }).del()
 
 
