@@ -25,6 +25,6 @@ function addStory(story){
 
 function delStory(id){
     return db('you_story')
-    .where({id})
-    .delete()
+          .where('id','=',id)
+          .delete()
 }
