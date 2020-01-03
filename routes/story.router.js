@@ -8,9 +8,7 @@ const db = require('../models/story.model')
  @param {req}
  @param {res}
  @returns {get} GET - All stories from your_story table
- * 
- 
- */
+ *  */
 router.get('/',(req,res) =>{
      db.getStory()
      .then(stories =>{
@@ -44,7 +42,10 @@ router.post('/',(req,res) =>{
     })
      .catch(err =>{message:err.message})
 })
-
+    function getById(id){
+        return db('your_story')
+               .where({id})
+    }
 /**putStory
  * @private
  * @route /your_story:id
@@ -78,6 +79,7 @@ router.post('/',(req,res) =>{
   * @param {Integer} Id req.params.id
 
   */,
+
   router.delete('/:id', (req, res) => {
     const { id } = req.params;
     db.delStory(id)
@@ -87,10 +89,7 @@ router.post('/',(req,res) =>{
       } else {
         res.status(404).json({ message: 'Could not find story with given id' });
       }
-    })
-    .catch(err => {
-      res.status(500).json({ message: 'Failed to delete story' });
-    });
-  });
+
+ 
 
     module.exports = router
