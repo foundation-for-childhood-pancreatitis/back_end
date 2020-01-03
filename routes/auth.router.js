@@ -7,41 +7,24 @@ const moment = require('moment')
 
 
 
-/**Register A New Admin
- * @post
- * @route admin/register
- * @param {String} name
- * @param {String} password
- * @param {String} email
- * @returns {Admin} admin object
- */
 router.post('/register',(req,res) => {
     const admin = req.body
-/**
- * creates a hash of the user password before adding 
- * it to the database
- */
+
     const hash = bcrypt.hashSync(admin.password,10);
     admin.password = hash
 
     db.addAdmin(admin)
-    .then(saved  => {
-        if(saved){res.status(201).json({message:`${saved.email} added @${moment().format('ll')}`,data:saved})}
-           
+    .then(id => {
+        res.status(201).json({id:id})
+
+    })
         
-        res.status(404).json({message:'Please check username and email'})})
+     
     
     .catch(err =>{res.status(500),console.log(err)})
     
 })
 
-/**Login 
- * @post
- * @route admin/login
- * @param {String} email
- * @param {String} password
- * @returns {Token} authorization token
- */
 router.post('/login' ,(req,res) => {
     const { email , password } = req.body;
 
