@@ -4,12 +4,18 @@ module.exports = {
     getStoryById,
     updateStory,
     addStory,
-    deleteStory
+    deleteStory,
+    getByID
 }
 function getStory(){
     return db('your_story')
       .select("*")
 }
+  function getByID(id){
+      return db("your_story")
+           .where({id})
+
+  }
 
 function getStoryById(id) {
     return db('your_story').where({ id }).first()
@@ -32,8 +38,12 @@ function addStory(story){
 } 
 
 
+
+       
+            
 function delStory(id) {
     return db('your_story').where({ id }).del()
+
 
 
 }
