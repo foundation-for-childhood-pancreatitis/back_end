@@ -7,7 +7,8 @@
     "nodemon": "nodemon index.js",
     "start": "node index.js",
     "generate-docs": "rm -rf ./docs/*; jsdoc -c ./config/jsdoc-config.json",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "[node.js] build --output build"
   },
   "repository": {
     "type": "git",
@@ -30,15 +31,17 @@
     "knex": "^0.20.6",
     "moment": "^2.24.0",
     "pg": "^7.17.0",
-    "react-netlify-identity": "^0.1.9",
-    "square-connect": "^2.20191217.0"
+    "react-netlify-identity": "^0.2.0",
+    "square-connect": "^2.20191217.0",
+    "webpack": "^4.41.5"
   },
   "devDependencies": {
     "jsdoc": "^3.6.3",
     "jsdoc-http-plugin": "^0.3.2",
     "jsdoc-to-markdown": "^5.0.3",
     "nodemon": "^2.0.2",
-    "supertest": "^4.0.2"
+    "supertest": "^4.0.2",
+    "webpack-cli": "^3.3.10"
   },
   "engines": {
     "node": "12.13.0",
