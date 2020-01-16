@@ -6,9 +6,9 @@
   "scripts": {
     "nodemon": "nodemon index.js",
     "start": "node index.js",
-    "generate-docs": "rm -rf ./docs/*; jsdoc -c ./config/jsdoc-config.json",
+    "generate-docs": "bash -c `rm -rf ./docs/*`; jsdoc -c ./config/jsdoc-config.json",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "[node.js] build --output build"
+    "build": "nodemon index.js "
   },
   "repository": {
     "type": "git",
