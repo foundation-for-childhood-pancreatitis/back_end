@@ -29,7 +29,7 @@
     "helmet": "^3.21.2",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.20.6",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "pg": "^7.17.0",
     "react-netlify-identity": "^0.2.0",
     "square-connect": "^2.20191217.0",
