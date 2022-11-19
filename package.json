@@ -41,7 +41,7 @@
     "jsdoc-to-markdown": "^5.0.3",
     "nodemon": "^2.0.2",
     "supertest": "^4.0.2",
-    "webpack-cli": "^3.3.10"
+    "webpack-cli": "^3.3.12"
   },
   "engines": {
     "node": "12.13.0",
